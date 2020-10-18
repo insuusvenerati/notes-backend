@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  strapi:
+    container_name: strapi
+    image: strapi/strapi
+    environment:
+      NODE_ENV: production
+      DATABASE_CLIENT: mongo
+      DATABASE_HOST: db
+      DATABASE_PORT: 27017
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - 1337:1337
+    volumes:
+      - ./:/srv/app
+    depends_on:
+      - db
+    command: "strapi start"
+
+  db:
+    container_name: db
+    image: "docker.io/bitnami/mongodb:4.4-debian-10"
+    volumes:
+      - "mongodb_data:/bitnami/mongodb"
+    environment:
+      MONGODB_USERNAME: ${DATABASE_USERNAME}
+      MONGODB_PASSWORD: ${DATABASE_PASSWORD}
+      MONGODB_DATABASE: ${DATABASE_NAME}
+
+volumes:
+  mongodb_data:
