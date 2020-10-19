@@ -2,7 +2,6 @@ version: "3"
 
 services:
   strapi:
-    container_name: strapi
     image: strapi/strapi
     environment:
       NODE_ENV: production
@@ -12,13 +11,19 @@ services:
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+    command: "strapi start"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`strapi.docker.localhost`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
+      # - "traefik.http.routers.whoami.tls.certresolver=stiforr"
     ports:
-      - 1337:1337
+      - 1337
     volumes:
       - ./:/srv/app
     depends_on:
       - db
-    command: "strapi start"
+      - traefik
 
   db:
     container_name: db
@@ -30,5 +35,32 @@ services:
       MONGODB_PASSWORD: ${DATABASE_PASSWORD}
       MONGODB_DATABASE: ${DATABASE_NAME}
 
+  traefik:
+    image: traefik
+    container_name: traefik
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - "letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro" # Development only
+    environment:
+      CF_API_EMAIL: ${CF_API_EMAIL}
+      CF_API_KEY: ${CF_API_KEY}
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker"
+      # - "--providers.docker.endpoint=tcp://127.0.0.1:2376" # Production configuration https://docs.docker.com/engine/security/https/#create-a-ca-server-and-client-keys-with-openssl
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      # - "--certificatesresolvers.stiforr.acme.dnschallenge=true"
+      # - "--certificatesresolvers.stiforr.acme.dnschallenge.provider=cloudflare"
+      # - "--certificatesresolvers.stiforr.acme.email="
+      # - "--certificatesresolvers.stiforr.acme.storage=/letsencrypt/acme.json"
+      # - "--certificatesresolvers.stiforr.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory" # Use staging while developing
+
 volumes:
   mongodb_data:
+  letsencrypt:
