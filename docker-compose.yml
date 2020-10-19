@@ -14,8 +14,8 @@ services:
     command: "strapi start"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`strapi.docker.localhost`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
+      - "traefik.http.routers.strapi.rule=Host(`strapi.docker.localhost`)"
+      - "traefik.http.routers.strapi.entrypoints=web"
       # - "traefik.http.routers.whoami.tls.certresolver=stiforr"
     ports:
       - 1337
@@ -53,6 +53,9 @@ services:
       - "--providers.docker"
       # - "--providers.docker.endpoint=tcp://127.0.0.1:2376" # Production configuration https://docs.docker.com/engine/security/https/#create-a-ca-server-and-client-keys-with-openssl
       - "--providers.docker.exposedbydefault=false"
+      # - "--providers.docker.tls.ca=/ca.pem"
+      # - "--providers.docker.tls.cert=/cert.pem"
+      # - "--providers.docker.tls.key=/key.pem"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       # - "--certificatesresolvers.stiforr.acme.dnschallenge=true"
