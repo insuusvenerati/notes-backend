@@ -7,20 +7,25 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "semantic-release": "semantic-release"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "semantic-release": "^17.4.2"
+  },
   "dependencies": {
-    "strapi": "3.2.1",
-    "strapi-admin": "3.2.1",
-    "strapi-connector-mongoose": "3.2.1",
-    "strapi-plugin-content-manager": "3.2.1",
-    "strapi-plugin-content-type-builder": "3.2.1",
-    "strapi-plugin-email": "3.2.1",
-    "strapi-plugin-graphql": "3.2.1",
-    "strapi-plugin-upload": "3.2.1",
-    "strapi-plugin-users-permissions": "3.2.1",
-    "strapi-utils": "3.2.1"
+    "strapi": "3.6.0",
+    "strapi-admin": "3.6.0",
+    "strapi-connector-mongoose": "3.6.0",
+    "strapi-plugin-content-manager": "3.6.0",
+    "strapi-plugin-content-type-builder": "3.6.0",
+    "strapi-plugin-email": "3.6.0",
+    "strapi-plugin-graphql": "3.6.0",
+    "strapi-plugin-upload": "3.6.0",
+    "strapi-plugin-users-permissions": "3.6.0",
+    "strapi-utils": "3.6.0"
   },
   "author": {
     "name": "A Strapi developer"

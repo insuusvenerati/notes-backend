@@ -1,0 +1,26 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: "Install and Build"
+    image: node:lts-buster
+    commands:
+      - yarn install --frozen-lockfile
+      - yarn build
+    environment:
+      DATABASE_URI:
+        from_secret: DATABASE_URI
+      ADMIN_JWT_SECRET:
+        from_secret: ADMIN_JWT_SECRET
+
+  - name: "Release"
+    image: node:lts-buster
+    commands:
+      - yarn semantic-release
+    depends_on:
+      - "Install and Build"
+    when:
+      branch:
+        include:
+          - master
