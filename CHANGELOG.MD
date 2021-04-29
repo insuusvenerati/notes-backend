@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/insuusvenerati/notes-backend/compare/1.0.1...1.0.2) (2021-04-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency strapi-plugin-upload to v3.6.1 ([3f8bd25](https://github.com/insuusvenerati/notes-backend/commit/3f8bd258cb9fa0aced0d2907a54f196a1c4b024a))
+
 ## [1.0.1](https://github.com/insuusvenerati/notes-backend/compare/1.0.0...1.0.1) (2021-04-29)
 
 
