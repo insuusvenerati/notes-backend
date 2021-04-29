@@ -20,6 +20,9 @@ steps:
       - yarn semantic-release
     depends_on:
       - "Install and Build"
+    environment:
+      GH_TOKEN:
+        from_secret: GH_TOKEN
     when:
       branch:
         include:
