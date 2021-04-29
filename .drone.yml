@@ -24,3 +24,9 @@ steps:
       branch:
         include:
           - master
+
+trigger:
+  event:
+    exclude:
+      - tag
+      - promote
