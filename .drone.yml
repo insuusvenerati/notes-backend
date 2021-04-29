@@ -33,3 +33,6 @@ trigger:
     exclude:
       - tag
       - promote
+  branch:
+    exclude:
+      - renovate/*
