@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/insuusvenerati/notes-backend/compare/1.0.0...1.0.1) (2021-04-29)
+
+
+### Bug Fixes
+
+* **deps:** update strapi monorepo to v3.6.1 ([b1d82da](https://github.com/insuusvenerati/notes-backend/commit/b1d82dab02345466d9441eae37de5465cc0879cf))
+
 # 1.0.0 (2021-04-29)
 
 
