@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/insuusvenerati/notes-backend/compare/1.0.2...1.1.0) (2021-06-15)
+
+
+### Features
+
+* update strapi ([258ff35](https://github.com/insuusvenerati/notes-backend/commit/258ff35f70e106912afbe1b161fb7591191e4173))
+
 ## [1.0.2](https://github.com/insuusvenerati/notes-backend/compare/1.0.1...1.0.2) (2021-04-29)
 
 
